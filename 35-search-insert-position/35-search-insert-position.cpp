@@ -8,8 +8,6 @@ public:
     int end = nums.size() - 1;
     int mid;
 
-    // Binary Search
-
     while (start <= end)
     {
         mid = (start + end) / 2;
