@@ -1,17 +1,31 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        string ans="",rans="";
-        for(char x:s){
-            if(x>='A' && x<='Z')
-                ans+=char(x+32);
-            
-            if(x>='a' && x<='z' || x>='0' && x<='9' )
-                ans+=x;
-        }
-        rans=ans;
-        reverse(rans.begin(),rans.end());
+        int left = 0;
+        int right = s.length() - 1;
         
-        return rans==ans;
+        while (left < right) {
+            char leftChar = tolower(s[left]);
+            char rightChar = tolower(s[right]);
+            
+            if (!isalnum(leftChar)) {
+                left++;
+                continue;
+            }
+            
+            if (!isalnum(rightChar)) {
+                right--;
+                continue;
+            }
+            
+            if (leftChar != rightChar) {
+                return false;
+            }
+            
+            left++;
+            right--;
+        }
+        
+        return true;
     }
 };
