@@ -1,23 +1,21 @@
 class Solution {
 public:
-    
     string longestCommonPrefix(vector<string>& strs) {
-       
-        if(strs.size()==1)
-            return strs[0];
-        
-        string prefix="{",tprefix="";
-        for(int i=0;i<strs.size()-1;i++){
-            int mlen=min(strs[i].size(),strs[i+1].size());
-            for(int j=0;j<mlen;j++){
-                if(strs[i][j]==strs[i+1][j])
-                    tprefix+=strs[i][j];
-                else
-                    break;
+        if (strs.empty())
+            return "";
+
+        string prefix = strs[0];  // Initialize prefix with the first string
+
+        for (int i = 1; i < strs.size(); ++i) {
+            int j = 0;
+            while (j < prefix.size() && j < strs[i].size() && prefix[j] == strs[i][j]) {
+                ++j;
             }
-            prefix=min(prefix,tprefix);
-            tprefix="";
+            prefix = prefix.substr(0, j);  // Update prefix with the common part
+            if (prefix.empty())
+                break;  // If prefix becomes empty, no need to check further
         }
-        return prefix == "{" ? "" : prefix;
+
+        return prefix;
     }
 };
