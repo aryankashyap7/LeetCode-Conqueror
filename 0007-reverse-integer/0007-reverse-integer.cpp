@@ -17,7 +17,7 @@ public:
         try {
             int reversedInt = stoi(reversedStr);
             return neg ? -reversedInt : reversedInt;}
-        catch(){
+        catch(out_of_range &e){
             return 0;
         }
         // } catch (out_of_range &e) {
