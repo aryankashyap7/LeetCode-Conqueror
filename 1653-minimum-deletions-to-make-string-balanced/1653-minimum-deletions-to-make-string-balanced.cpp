@@ -1,12 +1,18 @@
-class Solution:
-    def minimumDeletions(self, s: str) -> int:
-        n = len(s)
-        f = [0] * (n + 1)
-        b = 0
-        for i, c in enumerate(s, 1):
-            if c == 'b':
-                f[i] = f[i - 1]
-                b += 1
-            else:
-                f[i] = min(f[i - 1] + 1, b)
-        return f[n]
+class Solution {
+public:
+    int minimumDeletions(string s) {
+        int n = s.size();
+        int f[n + 1];
+        memset(f, 0, sizeof(f));
+        int b = 0;
+        for (int i = 1; i <= n; ++i) {
+            if (s[i - 1] == 'b') {
+                f[i] = f[i - 1];
+                ++b;
+            } else {
+                f[i] = min(f[i - 1] + 1, b);
+            }
+        }
+        return f[n];
+    }
+};
